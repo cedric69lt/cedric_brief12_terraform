@@ -1,3 +1,4 @@
+ #Création du LoadBalancer
  resource "azurerm_lb" "test" {
    name                = "loadBalancer"
    location            = azurerm_resource_group.test.location
@@ -13,7 +14,7 @@
    loadbalancer_id     = azurerm_lb.test.id
    name                = "BackEndAddressPool"
  }
-
+#Zone de Disponibilité
  resource "azurerm_availability_set" "avset" {
    name                         = "avset"
    location                     = azurerm_resource_group.test.location
@@ -24,7 +25,7 @@
  }
 
 
-#Create Loadbalancing Rules
+#Creation des Règles du LoadBalancer
 resource "azurerm_lb_rule" "test" {
   loadbalancer_id                = azurerm_lb.test.id
   resource_group_name            = azurerm_resource_group.test.name
@@ -38,7 +39,7 @@ resource "azurerm_lb_rule" "test" {
 }
 
 
-#Create Probe
+#Creation Du Probe
 resource "azurerm_lb_probe" "test" {
   resource_group_name = azurerm_resource_group.test.name
   loadbalancer_id     = azurerm_lb.test.id
